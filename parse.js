@@ -1,6 +1,5 @@
 const arrayValueParse = (value) => {
   const newValue = value.slice(1, -1).split(",");
-
   return newValue.map((ele) => parse(ele.replace(" ", "")));
 };
 
@@ -16,7 +15,8 @@ const parse = (value) => {
     return Number(value);
   }
   // 타입 체크 null
-  if (value == "null") {
+  if (value === "null") {
+    console.log(value);
     return null;
   }
   // 타입 체크 undefined

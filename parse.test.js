@@ -58,6 +58,6 @@ describe("parse", () => {
   });
 
   it('문자열 [1, 2, "null"]을 입력하면 [1, 2, "null"]을 반환한다.', () => {
-    expect(() => parse('[1, 2, "null"]')).toMatchObject([1, 2, "null"]);
+    expect(parse('[1, 2, "null"]')).toMatchObject([1, 2, "null"]);
   });
 });
