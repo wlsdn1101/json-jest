@@ -20,4 +20,8 @@ describe("parse", () => {
   it("문자열 null을 입력하면 null을 출력한다.", () => {
     expect(parse("null")).toBe(null);
   });
+
+  it("문자열 {}를 입력하면 {}를 출력한다.", () => {
+    expect(parse("{}")).toBe({});
+  });
 });
