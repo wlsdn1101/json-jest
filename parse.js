@@ -4,7 +4,9 @@ const arrayValueParse = (value) => {
   }
 
   const newValue = value.slice(1, -1).split(",");
-  return newValue.map((ele) => parse(ele.replace(" ", "")));
+  return newValue.map((ele) =>
+    ele[0] === " " ? parse(ele.slice(1)) : parse(ele),
+  );
 };
 
 const parse = (value) => {
