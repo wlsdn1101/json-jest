@@ -16,4 +16,8 @@ describe("parse", () => {
   it("문자 0을 입력하면 숫자 0을 출력한다.", () => {
     expect(parse("0")).toBe(0);
   });
+
+  it("문자열 null을 입력하면 null을 출력한다.", () => {
+    expect(parse("null")).toBe(null);
+  });
 });
