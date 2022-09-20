@@ -5,7 +5,7 @@ const parse = (value) => {
     return false;
   }
 
-  if (Number(value)) {
+  if (Number(value) || value === "0") {
     return Number(value);
   }
 
