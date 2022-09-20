@@ -1,15 +1,15 @@
-const parse = (str) => {
-  if (str === "true") {
+const parse = (value) => {
+  if (value === "true") {
     return true;
-  } else if (str === "false") {
+  } else if (value === "false") {
     return false;
   }
 
-  if (Number(str)) {
-    return Number(str);
+  if (Number(value)) {
+    return Number(value);
   }
 
-  return str.slice(1, str.length - 1);
+  return value.slice(1, value.length - 1);
 };
 
 module.exports = parse;
