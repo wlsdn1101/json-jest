@@ -1,6 +1,6 @@
 const parse = require("./parse");
 
-describe("parse", () => {
+describe("parse - Primitive type", () => {
   it("문자열 'jest'를 넣으면 문자열 jest를 출력한다.", () => {
     expect(parse('"jest"')).toBe("jest");
   });
@@ -20,7 +20,9 @@ describe("parse", () => {
   it("문자열 null을 입력하면 null을 출력한다.", () => {
     expect(parse("null")).toBe(null);
   });
+});
 
+describe("parse - Reference Type", () => {
   it("문자열 {}를 입력하면 {}를 출력한다.", () => {
     expect(parse("{}")).toEqual({});
   });
@@ -29,14 +31,20 @@ describe("parse", () => {
     expect(parse('[1, 2, "3"]')).toEqual([1, 2, "3"]);
   });
 
-  it("문자열 undefined를 입력하면 Error를 반환한다.", () => {
-    expect(() => parse("undefined")).toThrow(
-      "undefined is not valid JSON at JSON.parse",
-    );
-  });
-
   it("문자열 [1, 2, null]을 입력하면 [1, 2, null]을 출력한다.", () => {
     expect(parse("[1, 2, null]")).toMatchObject([1, 2, null]);
+  });
+
+  it('문자열 [1, 2, "null"]을 입력하면 [1, 2, "null"]을 반환한다.', () => {
+    expect(parse('[1, 2, "null"]')).toMatchObject([1, 2, "null"]);
+  });
+});
+
+describe("parse - Error handling", () => {
+  it('문자열 " "를 입력하면 Error를 반환한다.', () => {
+    expect(() => parse(" ")).toThrow(
+      "Unexpected non-whitespace character after JSON at position 1",
+    );
   });
 
   it("문자열 [1, 2, undefined]를 입력하면 Error를 반환한다.", () => {
@@ -51,13 +59,9 @@ describe("parse", () => {
     );
   });
 
-  it('문자열 " "를 입력하면 Error를 반환한다.', () => {
-    expect(() => parse(" ")).toThrow(
-      "Unexpected non-whitespace character after JSON at position 1",
+  it("문자열 undefined를 입력하면 Error를 반환한다.", () => {
+    expect(() => parse("undefined")).toThrow(
+      "undefined is not valid JSON at JSON.parse",
     );
-  });
-
-  it('문자열 [1, 2, "null"]을 입력하면 [1, 2, "null"]을 반환한다.', () => {
-    expect(parse('[1, 2, "null"]')).toMatchObject([1, 2, "null"]);
   });
 });
