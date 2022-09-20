@@ -32,19 +32,19 @@ describe("parse - Reference Type", () => {
   });
 
   it("문자열 [1, 2, null]을 입력하면 [1, 2, null]을 출력한다.", () => {
-    expect(parse("[1, 2, null]")).toMatchObject([1, 2, null]);
+    expect(parse("[1, 2, null]")).toEqual([1, 2, null]);
   });
 
   it('문자열 [1, 2, "null"]을 입력하면 [1, 2, "null"]을 반환한다.', () => {
-    expect(parse('[1, 2, "null"]')).toMatchObject([1, 2, "null"]);
+    expect(parse('[1, 2, "null"]')).toEqual([1, 2, "null"]);
   });
 
   it("문자열 []을 입력하면 []을 반환한다.", () => {
-    expect(parse("[]")).toMatchObject([]);
+    expect(parse("[]")).toEqual([]);
   });
 
   it('문자열 [" "]를 입력하면 [" "]를 반환한다.', () => {
-    expect(parse('[" "]')).toMatchObject([" "]);
+    expect(parse('[" "]')).toEqual([" "]);
   });
 });
 
