@@ -50,4 +50,10 @@ describe("parse", () => {
       "Unexpected non-whitespace character after JSON at position 1",
     );
   });
+
+  it('문자열 " "를 입력하면 Error를 반환한다.', () => {
+    expect(() => parse(" ")).toThrow(
+      "Unexpected non-whitespace character after JSON at position 1",
+    );
+  });
 });
