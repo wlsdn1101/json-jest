@@ -9,6 +9,10 @@ const parse = (value) => {
     return Number(value);
   }
 
+  if (value === "null") {
+    return null;
+  }
+
   return value.slice(1, value.length - 1);
 };
 
