@@ -26,6 +26,10 @@ const parse = (value) => {
   if (value === "null") {
     return null;
   }
+  // 타입 체크 undefined
+  if (value === "undefined") {
+    throw new Error("undefined is not valid JSON at JSON.parse");
+  }
 
   if (value[0] === "{") {
     return {};
