@@ -38,7 +38,14 @@ const parse = (value) => {
   if (value[0] === "[") {
     return arrayValueParse(value);
   }
+
   if (value === "") {
+    throw new Error(
+      "Unexpected non-whitespace character after JSON at position 1",
+    );
+  }
+
+  if (value === " ") {
     throw new Error(
       "Unexpected non-whitespace character after JSON at position 1",
     );
