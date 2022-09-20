@@ -22,6 +22,6 @@ describe("parse", () => {
   });
 
   it("문자열 {}를 입력하면 {}를 출력한다.", () => {
-    expect(parse("{}")).toBe({});
+    expect(parse("{}")).toEqual({});
   });
 });

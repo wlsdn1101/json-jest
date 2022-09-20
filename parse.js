@@ -13,6 +13,10 @@ const parse = (value) => {
     return null;
   }
 
+  if (value[0] === "{") {
+    return {};
+  }
+
   return value.slice(1, value.length - 1);
 };
 
