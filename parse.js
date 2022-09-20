@@ -1,4 +1,8 @@
 const arrayValueParse = (value) => {
+  if (value === "[]") {
+    return [];
+  }
+
   const newValue = value.slice(1, -1).split(",");
   return newValue.map((ele) => parse(ele.replace(" ", "")));
 };
