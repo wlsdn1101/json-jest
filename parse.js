@@ -1,14 +1,7 @@
 const arrayValueParse = (value) => {
-  let newValue = value.slice(1, -1).split(","),
-    returnValue = [];
+  const newValue = value.slice(1, -1).split(",");
 
-  newValue.map((ele) =>
-    returnValue.push(
-      Number(ele) || ele === "0" ? Number(ele) : parse(ele.slice(1)),
-    ),
-  );
-
-  return returnValue;
+  return newValue.map((ele) => parse(ele.replace(" ", "")));
 };
 
 const parse = (value) => {
@@ -39,17 +32,12 @@ const parse = (value) => {
     return arrayValueParse(value);
   }
 
-  if (value === "") {
+  if (value === "" || value === " ") {
     throw new Error(
       "Unexpected non-whitespace character after JSON at position 1",
     );
   }
 
-  if (value === " ") {
-    throw new Error(
-      "Unexpected non-whitespace character after JSON at position 1",
-    );
-  }
   return value.slice(1, -1);
 };
 
