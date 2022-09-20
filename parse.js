@@ -12,16 +12,17 @@ const arrayValueParse = (value) => {
 };
 
 const parse = (value) => {
+  // 타입 체크 boolean
   if (value === "true") {
     return true;
   } else if (value === "false") {
     return false;
   }
-
+  // 타입 체크 number
   if (Number(value) || value === "0") {
     return Number(value);
   }
-
+  // 타입 체크 null
   if (value === "null") {
     return null;
   }
@@ -29,7 +30,7 @@ const parse = (value) => {
   if (value[0] === "{") {
     return {};
   }
-
+  // 타입 체크 array
   if (value[0] === "[") {
     return arrayValueParse(value);
   }
