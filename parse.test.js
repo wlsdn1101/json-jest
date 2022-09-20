@@ -56,4 +56,8 @@ describe("parse", () => {
       "Unexpected non-whitespace character after JSON at position 1",
     );
   });
+
+  it('문자열 [1, 2, "null"]을 입력하면 [1, 2, "null"]을 반환한다.', () => {
+    expect(() => parse('[1, 2, "null"]')).toMatchObject([1, 2, "null"]);
+  });
 });
