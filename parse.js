@@ -5,6 +5,10 @@ const parse = (str) => {
     return false;
   }
 
+  if (Number(str)) {
+    return Number(str);
+  }
+
   return str.slice(1, str.length - 1);
 };
 
