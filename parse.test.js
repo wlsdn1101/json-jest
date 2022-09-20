@@ -29,9 +29,13 @@ describe("parse", () => {
     expect(parse('[1, 2, "3"]')).toEqual([1, 2, "3"]);
   });
 
-  it("문자열 undefined를 입력하면 Error를 띄워준다,", () => {
+  it("문자열 undefined를 입력하면 Error를 반환한다.", () => {
     expect(() => parse("undefined")).toThrow(
       "undefined is not valid JSON at JSON.parse",
     );
+  });
+
+  it("문자열 [1, 2, null]을 입력하면 [1, 2, null]을 출력한다.", () => {
+    expect(parse("[1, 2, null]")).toBe([1, 2, null]);
   });
 });
