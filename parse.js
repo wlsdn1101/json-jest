@@ -4,7 +4,7 @@ const arrayValueParse = (value) => {
 
   newValue.map((ele) =>
     returnValue.push(
-      Number(ele) || ele === "0" ? Number(ele) : ele.slice(2, -1),
+      Number(ele) || ele === "0" ? Number(ele) : parse(ele.slice(1)),
     ),
   );
 
@@ -23,7 +23,7 @@ const parse = (value) => {
     return Number(value);
   }
   // 타입 체크 null
-  if (value === "null") {
+  if (value == "null") {
     return null;
   }
   // 타입 체크 undefined
@@ -39,7 +39,7 @@ const parse = (value) => {
     return arrayValueParse(value);
   }
 
-  return value.slice(1, value.length - 1);
+  return value.slice(1, -1);
 };
 
 module.exports = parse;

@@ -36,6 +36,6 @@ describe("parse", () => {
   });
 
   it("문자열 [1, 2, null]을 입력하면 [1, 2, null]을 출력한다.", () => {
-    expect(parse("[1, 2, null]")).toBe([1, 2, null]);
+    expect(parse("[1, 2, null]")).toMatchObject([1, 2, null]);
   });
 });
