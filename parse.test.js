@@ -42,6 +42,10 @@ describe("parse - Reference Type", () => {
   it("문자열 []을 입력하면 []을 반환한다.", () => {
     expect(parse("[]")).toMatchObject([]);
   });
+
+  it('문자열 [" "]를 입력하면 [" "]를 반환한다.', () => {
+    expect(parse('[" "]')).toMatchObject([" "]);
+  });
 });
 
 describe("parse - Error handling", () => {
