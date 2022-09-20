@@ -38,4 +38,16 @@ describe("parse", () => {
   it("문자열 [1, 2, null]을 입력하면 [1, 2, null]을 출력한다.", () => {
     expect(parse("[1, 2, null]")).toMatchObject([1, 2, null]);
   });
+
+  it("문자열 [1, 2, undefined]를 입력하면 Error를 반환한다.", () => {
+    expect(() => parse("[1, 2, undefined]")).toThrow(
+      "undefined is not valid JSON at JSON.parse",
+    );
+  });
+
+  it("문자열 [1, 2, 3, ]를 입력하면 Error를 반환한다.", () => {
+    expect(() => parse("[1, 2, 3, ]")).toThrow(
+      "Unexpected non-whitespace character after JSON at position 1",
+    );
+  });
 });
