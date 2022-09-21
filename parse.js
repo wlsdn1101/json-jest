@@ -1,3 +1,26 @@
+const objectValueParse = (value) => {
+  let returnObject = {};
+
+  if (value === "{}") {
+    return {};
+  }
+
+  const newValue = value
+    .slice(1, -1)
+    .split(",")
+    .map((ele) => (ele[0] === " " ? ele.slice(1) : ele));
+  const objectValue = newValue.map((ele) =>
+      parse(ele.slice(ele.indexOf(":") + 1)),
+    ),
+    objectKey = newValue.map((ele) => ele.slice(1, ele.indexOf(":") - 1));
+
+  for (let i = 0; i < newValue.length; i++) {
+    returnObject[objectKey[i]] = objectValue[i];
+  }
+
+  return returnObject;
+};
+
 const arrayValueParse = (value) => {
   const newValue = value.slice(1, -1).split(",");
   if (value === "[]") {
@@ -35,7 +58,7 @@ const parse = (value) => {
   }
 
   if (value[0] === "{") {
-    return {};
+    return objectValueParse(value);
   }
   // 타입 체크 array
   if (value[0] === "[") {
