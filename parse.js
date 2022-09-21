@@ -1,15 +1,15 @@
 //
-const checkFirstCharSpace = (objInArrayState, gateIndex) => {
+const checkFirstCharSpace = (objInArrayState, loopIndex) => {
   return (
-    objInArrayState[gateIndex]
-      .slice(objInArrayState[gateIndex].indexOf(":") + 1)
+    objInArrayState[loopIndex]
+      .slice(objInArrayState[loopIndex].indexOf(":") + 1)
       .charAt(0) === " "
   );
 };
 //object의 value값의 앞에 공백이 있는 지 확인 후 value를 return
-const returnObjectValue = (objInArrayState, gateIndex, isFirstValueSpace) => {
-  return objInArrayState[gateIndex].slice(
-    objInArrayState[gateIndex].indexOf(":") + 1 + isFirstValueSpace,
+const returnObjectValue = (objInArrayState, loopIndex, isFirstValueSpace) => {
+  return objInArrayState[loopIndex].slice(
+    objInArrayState[loopIndex].indexOf(":") + 1 + isFirstValueSpace,
   );
 };
 //object의 key와 value부분을 각각 분리한 후 배열에 넣어준 뒤, 객체에 추가
