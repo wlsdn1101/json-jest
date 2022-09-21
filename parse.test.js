@@ -61,6 +61,13 @@ describe("parse - Reference Type", () => {
       count: 42,
     });
   });
+
+  it('문자열 {"result":true, "count": {"result":true}}를 입력하면 객체 {"result":true, "count": {"result":true}}를 반환한다.', () => {
+    expect(parse('{"result":true, "count": {"result":true}}')).toEqual({
+      result: true,
+      count: { result: true },
+    });
+  });
   /*it.only("문자열 [[1,2,3], [1,2,3]]를 입력하면 [Array(), Array()]을 반환하지 않는다.", () => {
     expect(parse("[[1,2,3], [4,5,6]]")).toEqual([Array(3), Array(3)]);
   });*/
