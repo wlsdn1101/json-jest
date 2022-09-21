@@ -1,3 +1,18 @@
+//
+const checkFirstCharSpace = (objInArrayState, gateIndex) => {
+  return (
+    objInArrayState[gateIndex]
+      .slice(objInArrayState[gateIndex].indexOf(":") + 1)
+      .charAt(0) === " "
+  );
+};
+//object의 value값의 앞에 공백이 있는 지 확인 후 value를 return
+const returnObjectValue = (objInArrayState, gateIndex, isFirstValueSpace) => {
+  return objInArrayState[gateIndex].slice(
+    objInArrayState[gateIndex].indexOf(":") + 1 + isFirstValueSpace,
+  );
+};
+//object의 key와 value부분을 각각 분리한 후 배열에 넣어준 뒤, 객체에 추가
 const inputValueInObject = (objInArrayState) => {
   let objectKey = [],
     objectValue = [],
@@ -7,22 +22,17 @@ const inputValueInObject = (objInArrayState) => {
     objectKey.push(
       objInArrayState[i].slice(1, objInArrayState[i].indexOf(":") - 1),
     );
-    if (
-      objInArrayState[i]
-        .slice(objInArrayState[i].indexOf(":") + 1)
-        .charAt(0) === " "
-    ) {
-      objectValue.push(
-        parse(objInArrayState[i].slice(objInArrayState[i].indexOf(":") + 2)),
-      );
-    } else {
-      objectValue.push(
-        parse(objInArrayState[i].slice(objInArrayState[i].indexOf(":") + 1)),
-      );
-    }
-  }
 
-  for (let i = 0; i < objInArrayState.length; i++) {
+    objectValue.push(
+      parse(
+        returnObjectValue(
+          objInArrayState,
+          i,
+          checkFirstCharSpace(objInArrayState, i),
+        ),
+      ),
+    );
+
     answer[objectKey[i]] = objectValue[i];
   }
 

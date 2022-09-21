@@ -62,7 +62,7 @@ describe("parse - Reference Type", () => {
     });
   });
 
-  it.only('문자열 {"result":true, "count": {"result":true}}를 입력하면 객체 {"result":true, "count": {"result":true}}를 반환한다.', () => {
+  it('문자열 {"result":true, "count": {"result":true}}를 입력하면 객체 {"result":true, "count": {"result":true}}를 반환한다.', () => {
     expect(parse('{"result":true, "count": {"result":true}}')).toEqual({
       result: true,
       count: { result: true },
