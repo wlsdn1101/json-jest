@@ -1,21 +1,33 @@
-const objectValueParse = (value) => {
-  let returnObject = {};
+const inputValueInObject = (objInArrayState) => {
+  let objectKey = [],
+    objectValue = [],
+    answer = {};
 
-  if (value === "{}") {
-    return {};
+  for (let i = 0; i < objInArrayState.length; i++) {
+    objectKey.push(
+      objInArrayState[i].slice(1, objInArrayState[i].indexOf(":") - 1),
+    );
+    objectValue.push(
+      parse(objInArrayState[i].slice(objInArrayState[i].indexOf(":") + 1)),
+    );
   }
 
+  for (let i = 0; i < objInArrayState.length; i++) {
+    answer[objectKey[i]] = objectValue[i];
+  }
+
+  return answer;
+};
+
+const objectValueParse = (value) => {
+  let returnObject = {};
   const newValue = value
     .slice(1, -1)
     .split(",")
     .map((ele) => (ele[0] === " " ? ele.slice(1) : ele));
-  const objectValue = newValue.map((ele) =>
-      parse(ele.slice(ele.indexOf(":") + 1)),
-    ),
-    objectKey = newValue.map((ele) => ele.slice(1, ele.indexOf(":") - 1));
 
-  for (let i = 0; i < newValue.length; i++) {
-    returnObject[objectKey[i]] = objectValue[i];
+  if (value !== "{}") {
+    returnObject = inputValueInObject(newValue);
   }
 
   return returnObject;
