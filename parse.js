@@ -73,10 +73,16 @@ const checkTypeError = (value) => {
   if (value === "NaN" || value === "Infinity") {
     return true;
   }
+
+  if (value === "undefined") {
+    return true;
+  }
+
   return false;
 };
 
 const parse = (value) => {
+  //Error check
   if (checkTypeError(value)) {
     throw new Error(`${value} is not valid JSON at JSON.parse`);
   }
@@ -94,11 +100,6 @@ const parse = (value) => {
   // 타입 체크 null
   if (value === "null") {
     return null;
-  }
-  // 타입 체크 undefined
-
-  if (value === "undefined") {
-    throw new Error("undefined is not valid JSON at JSON.parse");
   }
 
   if (value[0] === "{") {
