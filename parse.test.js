@@ -18,11 +18,15 @@ describe("parse - Primitive type", () => {
   });
 
   it("문자열 null을 입력하면 null을 출력한다.", () => {
-    expect(parse("null")).toBe(null);
+    expect(parse("null")).toBeNull();
+  });
+
+  it("문자열 -2를 입력하면 숫자 -2를 출력한다.", () => {
+    expect(parse("-2")).toBe(-2);
   });
 });
 
-describe("parse - Reference Type", () => {
+describe.only("parse - Reference Type", () => {
   it("문자열 {}를 입력하면 {}를 출력한다.", () => {
     expect(parse("{}")).toEqual({});
   });
@@ -45,6 +49,10 @@ describe("parse - Reference Type", () => {
 
   it('문자열 [" "]를 입력하면 [" "]를 반환한다.', () => {
     expect(parse('[" "]')).toEqual([" "]);
+  });
+
+  it("문자열 [[1,2,3], [4,5,6]]를 입력하면 [Array(3), Array(3)]을 반환한다.", () => {
+    expect(parse("[[1,2,3], [4,5,6]]")).toEqual([Array(3), Array(3)]);
   });
 });
 

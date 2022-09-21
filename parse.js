@@ -4,6 +4,7 @@ const arrayValueParse = (value) => {
   }
 
   const newValue = value.slice(1, -1).split(",");
+  // split 함수를 실행하였을 때 ' jest'같은 형태로 나타나 이와 같이 첫 공백을 제거함
   return newValue.map((ele) =>
     ele[0] === " " ? parse(ele.slice(1)) : parse(ele),
   );
@@ -22,7 +23,6 @@ const parse = (value) => {
   }
   // 타입 체크 null
   if (value === "null") {
-    console.log(value);
     return null;
   }
   // 타입 체크 undefined
