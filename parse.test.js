@@ -26,7 +26,7 @@ describe("parse - Primitive type", () => {
   });
 });
 
-describe.only("parse - Reference Type", () => {
+describe("parse - Reference Type", () => {
   it("문자열 {}를 입력하면 {}를 출력한다.", () => {
     expect(parse("{}")).toEqual({});
   });
@@ -50,10 +50,20 @@ describe.only("parse - Reference Type", () => {
   it('문자열 [" "]를 입력하면 [" "]를 반환한다.', () => {
     expect(parse('[" "]')).toEqual([" "]);
   });
-
-  it("문자열 [[1,2,3], [4,5,6]]를 입력하면 [Array(3), Array(3)]을 반환한다.", () => {
-    expect(parse("[[1,2,3], [4,5,6]]")).toEqual([Array(3), Array(3)]);
+  // toEqual 안에 array값이 변해도 정답으로 출력되는 오류
+  it("문자열 [[], []]를 입력하면 [Array(0), Array(0)]을 반환한다.", () => {
+    expect(parse("[[], []]")).toEqual([Array(0), Array(0)]);
   });
+
+  it("문자열 {'result':true, 'count':42}를 입력하면 객체 {'result':true, 'count':42}를 반환한다.", () => {
+    expect(parse("{'result':true, 'count':42}")).toEqual({
+      result: true,
+      count: 42,
+    });
+  });
+  /*it.only("문자열 [[1,2,3], [1,2,3]]를 입력하면 [Array(), Array()]을 반환하지 않는다.", () => {
+    expect(parse("[[1,2,3], [4,5,6]]")).toEqual([Array(3), Array(3)]);
+  });*/
 });
 
 describe("parse - Error handling", () => {

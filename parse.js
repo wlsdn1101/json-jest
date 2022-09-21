@@ -1,9 +1,13 @@
 const arrayValueParse = (value) => {
+  const newValue = value.slice(1, -1).split(",");
   if (value === "[]") {
     return Array(0);
   }
 
-  const newValue = value.slice(1, -1).split(",");
+  if (value.indexOf("]") < 0) {
+    return value.slice(1);
+  }
+
   // split 함수를 실행하였을 때 ' jest'같은 형태로 나타나 이와 같이 첫 공백을 제거함
   return newValue.map((ele) =>
     ele[0] === " " ? parse(ele.slice(1)) : parse(ele),
