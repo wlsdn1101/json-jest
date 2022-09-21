@@ -7,9 +7,19 @@ const inputValueInObject = (objInArrayState) => {
     objectKey.push(
       objInArrayState[i].slice(1, objInArrayState[i].indexOf(":") - 1),
     );
-    objectValue.push(
-      parse(objInArrayState[i].slice(objInArrayState[i].indexOf(":") + 1)),
-    );
+    if (
+      objInArrayState[i]
+        .slice(objInArrayState[i].indexOf(":") + 1)
+        .charAt(0) === " "
+    ) {
+      objectValue.push(
+        parse(objInArrayState[i].slice(objInArrayState[i].indexOf(":") + 2)),
+      );
+    } else {
+      objectValue.push(
+        parse(objInArrayState[i].slice(objInArrayState[i].indexOf(":") + 1)),
+      );
+    }
   }
 
   for (let i = 0; i < objInArrayState.length; i++) {
