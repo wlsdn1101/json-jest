@@ -1,4 +1,4 @@
-/*const parse = require("./parse");
+const parse = require("./parse");
 
 describe("parse - Primitive type", () => {
   it("문자열 'jest'를 넣으면 문자열 jest를 출력한다.", () => {
@@ -70,7 +70,7 @@ describe("parse - Reference Type", () => {
   });
   /*it.only("문자열 [[1,2,3], [1,2,3]]를 입력하면 [Array(), Array()]을 반환하지 않는다.", () => {
     expect(parse("[[1,2,3], [4,5,6]]")).toEqual([Array(3), Array(3)]);
-  });
+  });*/
 });
 
 describe("parse - Error handling", () => {
@@ -103,8 +103,18 @@ describe("parse - Error handling", () => {
       "Unexpected non-whitespace character after JSON at position 1",
     );
   });
-});*/
-const parse = require("./parse");
+
+  it("문자열 NaN를 입력하면 Error를 반환한다.", () => {
+    expect(() => parse("NaN")).toThrow("NaN is not valid JSON at JSON.parse");
+  });
+
+  it("문자열 Infinity를 입력하면 Error를 반환한다.", () => {
+    expect(() => parse("Infinity")).toThrow(
+      "Infinity is not valid JSON at JSON.parse",
+    );
+  });
+});
+/*const parse = require("./parse");
 
 describe("parse", () => {
   it("문자 1을 넣으면 문자 1이 나온다.", () => {
@@ -195,3 +205,4 @@ describe("parse", () => {
     });
   });
 });
+*/

@@ -69,7 +69,17 @@ const arrayValueParse = (value) => {
   );
 };
 
+const checkTypeError = (value) => {
+  if (value === "NaN" || value === "Infinity") {
+    return true;
+  }
+  return false;
+};
+
 const parse = (value) => {
+  if (checkTypeError(value)) {
+    throw new Error(`${value} is not valid JSON at JSON.parse`);
+  }
   // 타입 체크 boolean
   if (value === "true") {
     return true;
@@ -78,6 +88,7 @@ const parse = (value) => {
   }
   // 타입 체크 number
   if (Number(value) || value === "0") {
+    console.log("afasf");
     return Number(value);
   }
   // 타입 체크 null
@@ -85,6 +96,7 @@ const parse = (value) => {
     return null;
   }
   // 타입 체크 undefined
+
   if (value === "undefined") {
     throw new Error("undefined is not valid JSON at JSON.parse");
   }
