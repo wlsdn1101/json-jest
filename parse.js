@@ -87,18 +87,17 @@ const parse = (value) => {
     throw new Error(`${value} is not valid JSON at JSON.parse`);
   }
   // 타입 체크 boolean
-  if (value === "true") {
+  if (value == "true") {
     return true;
-  } else if (value === "false") {
+  } else if (value == "false") {
     return false;
   }
   // 타입 체크 number
-  if (Number(value) || value === "0") {
-    console.log("afasf");
+  if (Number(value) || value == "0") {
     return Number(value);
   }
   // 타입 체크 null
-  if (value === "null") {
+  if (value == "null") {
     return null;
   }
 

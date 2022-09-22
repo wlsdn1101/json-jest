@@ -52,11 +52,11 @@ describe("parse - Reference Type", () => {
   });
   // toEqual 안에 array값이 변해도 정답으로 출력되는 오류
   it("문자열 [[], []]를 입력하면 [Array(0), Array(0)]을 반환한다.", () => {
-    expect(parse("[[], []]")).toEqual([Array(0), Array(0)]);
+    expect(parse("[[], []]")).toEqual([[], []]);
   });
 
   it("문자열 {'result':true, 'count':42}를 입력하면 객체 {'result':true, 'count':42}를 반환한다.", () => {
-    expect(parse("{'result':true, 'count':42}")).toEqual({
+    expect(parse('{"result":true, "count":42}')).toEqual({
       result: true,
       count: 42,
     });
@@ -68,8 +68,11 @@ describe("parse - Reference Type", () => {
       count: { result: true },
     });
   });
-  /*it.only("문자열 [[1,2,3], [1,2,3]]를 입력하면 [Array(), Array()]을 반환하지 않는다.", () => {
-    expect(parse("[[1,2,3], [4,5,6]]")).toEqual([Array(3), Array(3)]);
+  /*it("문자열 [[1,2,3], [1,2,3]]를 입력하면 [Array(), Array()]을 반환하지 않는다.", () => {
+    expect(parse("[[1,2,3], [4,5,6]]")).toEqual([
+      [1, 2, 3],
+      [4, 5, 6],
+    ]);
   });*/
 });
 
@@ -98,7 +101,7 @@ describe("parse - Error handling", () => {
     );
   });
 
-  it("문자열 {'result': true, }를 입력하면 Error를 반환한다.", () => {
+  it('문자열 {"result": true, }를 입력하면 Error를 반환한다.', () => {
     expect(() => parse('{"result": true, }')).toThrow(
       "Unexpected non-whitespace character after JSON at position 1",
     );
