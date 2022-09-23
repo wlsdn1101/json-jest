@@ -49,25 +49,39 @@ const objectValueParse = (value) => {
   return {};
 };
 
+//2차원 배열 처리함수
+const twoDimensionalArrayParse = (newValue) => {
+  let arraySliceByEnd = newValue.slice(0, newValue.indexOf("]") + 1);
+  const returnArray = [];
+
+  for (let i = 0; i < newValue.split("]").length - 1; i++) {
+    returnArray.push(
+      arrayValueParse(
+        arraySliceByEnd.slice(
+          arraySliceByEnd.lastIndexOf("["),
+          arraySliceByEnd.indexOf("]") + 1,
+        ),
+      ),
+    );
+    arraySliceByEnd = newValue.slice(arraySliceByEnd.indexOf("]") + 2).trim();
+  }
+
+  return returnArray;
+};
+
 const arrayValueParse = (value) => {
   const newValue = value.slice(1, -1);
   const returnArray = [];
-  let a = newValue.slice(0, newValue.indexOf("]") + 1);
+
   if (value === "[]") {
     return [];
   }
 
-  if (newValue.split("]").length - 1 === 0) {
-    newValue.split(",").map((ele) => returnArray.push(parse(ele.trim())));
-  } else {
-    for (let i = 0; i < newValue.split("]").length - 1; i++) {
-      returnArray.push(
-        arrayValueParse(a.slice(a.lastIndexOf("["), a.indexOf("]") + 1)),
-      );
-      a = newValue.slice(a.indexOf("]") + 2).trim();
-    }
+  if (newValue.split("]").length - 1 !== 0) {
+    return twoDimensionalArrayParse(newValue);
   }
 
+  newValue.split(",").map((ele) => returnArray.push(parse(ele.trim())));
   return returnArray;
 };
 
