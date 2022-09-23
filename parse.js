@@ -8,7 +8,7 @@ const inputValueInObject = (valueObj) => {
   let i = 0;
 
   while (true) {
-    const checkNestedObj = valueObj
+    const nestedObj = valueObj
       .slice(valueObj.indexOf(":") + 1, valueObj.indexOf("}") + 1)
       .trim();
 
@@ -16,8 +16,8 @@ const inputValueInObject = (valueObj) => {
       valueObj.slice(valueObj.indexOf('"') + 1, valueObj.indexOf(":") - 1),
     );
 
-    if (checkNestedObj[0] === "{") {
-      values.push(objectValueParse(checkNestedObj));
+    if (nestedObj[0] === "{") {
+      values.push(objectValueParse(nestedObj));
     } else {
       values.push(
         parse(
