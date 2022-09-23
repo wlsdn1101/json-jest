@@ -42,7 +42,7 @@ const inputValueInObject = (valueObj) => {
 };
 
 const objectValueParse = (value) => {
-  if (value !== "{}") {
+  if (value.replace(" ", "") !== "{}") {
     return inputValueInObject(value);
   }
 
@@ -53,7 +53,7 @@ const arrayValueParse = (value) => {
   let newValue = value.slice(1, -1).trim();
   const returnArray = [];
 
-  if (value === "[]") {
+  if (value.replace(" ", "") === "[]") {
     return [];
   }
 
