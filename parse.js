@@ -50,18 +50,25 @@ const objectValueParse = (value) => {
 };
 
 const arrayValueParse = (value) => {
-  const newValue = value.slice(1, -1).split(",");
-
+  const newValue = value.slice(1, -1);
+  const returnArray = [];
+  let a = newValue.slice(0, newValue.indexOf("]") + 1);
   if (value === "[]") {
-    return Array(0);
+    return [];
   }
 
-  if (value.indexOf("]") < 0) {
-    return value.slice(1);
+  if (newValue.split("]").length - 1 === 0) {
+    newValue.split(",").map((ele) => returnArray.push(parse(ele.trim())));
+  } else {
+    for (let i = 0; i < newValue.split("]").length - 1; i++) {
+      returnArray.push(
+        arrayValueParse(a.slice(a.lastIndexOf("["), a.indexOf("]") + 1)),
+      );
+      a = newValue.slice(a.indexOf("]") + 2).trim();
+    }
   }
 
-  // split 함수를 실행하였을 때 ' jest'같은 형태로 나타나 이와 같이 첫 공백을 제거함
-  return newValue.map((ele) => parse(ele.trim()));
+  return returnArray;
 };
 
 const checkTypeError = (value) => {
