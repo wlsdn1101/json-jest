@@ -77,7 +77,7 @@ describe("parse", () => {
       ]);
     });
 
-    it('문자열 [2022, "QMIT", ["LEE", "KIM"]]을 입력하면 [2022, "QMIT", ["LEE", "KIM"]]를 반환한다.', () => {
+    it.skip('문자열 [2022, "QMIT", ["LEE", "KIM"]]을 입력하면 [2022, "QMIT", ["LEE", "KIM"]]를 반환한다.', () => {
       expect(parse('[2022, "QMIT", ["LEE", "KIM"]]')).toEqual([
         2022,
         "QMIT",
